@@ -1,122 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Discover expert laser engraving services for personalized gifts, custom glass engraving, and unique wood and tumbler designs. Create lasting impressions today.">
-    <meta name="keywords" content="laser engraving, personalized gifts, custom engraving, glass engraving, wood engraving, tumbler engraving, custom gifts, laser cutting services">
-    <meta name="robots" content="index, follow">
-    <title>Custom Laser Engraving | Personalized Gifts & Engraving Services</title>
-
-    <link rel="stylesheet" href="CSS/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Gruppo&family=Merienda:wght@300..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Merienda:wght@300..900&family=Protest+Strike&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Lasting Impressions | Custom Laser Engraving & Design Studio</title>
+    <meta name="description" content="Lasting Impressions: the specialist in precision laser engraving. Unique wooden decoration, personalized wedding favors and custom maternity gifts.">
+    <meta name="keywords" content="laser engraving, wooden decoration, personalized gift, wedding favors, maternity gift, Lasting Impressions">
+    <meta name="robots" content="index, follow">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Charm:wght@400;700&family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=League+Gothic&family=Merienda:wght@300..900&family=Protest+Strike&family=Rowdies:wght@300;400;700&family=Sniglet:wght@400;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Raleway:wght@200;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Charm:wght@400;700&family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=League+Gothic&family=Merienda:wght@300..900&family=Protest+Strike&family=Qwigley&family=Rowdies:wght@300;400;700&family=Sniglet:wght@400;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --laser: #ff1e00;
+            --bg: #030303;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
 
+        /* Base Setup */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: #fff; font-family: 'Raleway', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        @media (pointer: fine) { * { cursor: none; } }
+
+        /* Laser UX (Desktop) */
+        #laser-dot { width: 10px; height: 10px; background: var(--laser); position: fixed; border-radius: 50%; pointer-events: none; z-index: 10000; box-shadow: 0 0 15px var(--laser), 0 0 30px var(--laser); display: none; transform: translate(-50%, -50%); }
+        @media (pointer: fine) { #laser-dot { display: block; } }
+
+        /* Preloader */
+        #preloader { position: fixed; inset: 0; background: #000; z-index: 20000; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1); }
+        .laser-scanner { width: clamp(200px, 60vw, 400px); height: 2px; background: var(--laser); box-shadow: 0 0 15px var(--laser), 0 0 30px var(--laser); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: scan 2s ease-in-out infinite; }
+        @keyframes scan { 0%, 100% { transform: translate(-50%, -100px); opacity: 0.2; } 50% { transform: translate(-50%, 100px); opacity: 1; } }
+        .loading-text { font-family: 'League Gothic'; font-size: clamp(1.5rem, 5vw, 2.5rem); letter-spacing: 10px; color: var(--gold); text-transform: uppercase; margin-top: 150px; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; text-shadow: 0 0 10px var(--gold); } }
+
+        /* Navigation */
+        nav { position: fixed; top: 0; width: 100%; z-index: 9000; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.85); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass); }
+        .nav-links a { color: #fff; text-decoration: none; font-family: 'League Gothic'; font-size: 1.4rem; margin-left: 20px; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* Sections */
+        section { padding: clamp(6rem, 12vw, 10rem) 7%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        h2 { font-family: 'League Gothic'; font-size: clamp(3rem, 10vw, 6rem); color: var(--gold); text-transform: uppercase; margin-bottom: 2rem; }
+
+        /* Hero */
+        .hero { text-align: center; }
+        .hero h1 { font-family: 'League Gothic'; font-size: clamp(4rem, 15vw, 12rem); line-height: 0.9; margin-bottom: 2rem; }
+        .hero span { color: var(--gold); }
+
+        /* Gallery */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin-bottom: 2.5rem; }
+        .tilt-card { position: relative; border-radius: 20px; overflow: hidden; border: 1px solid var(--glass); aspect-ratio: 4/5; transition: transform 0.2s ease-out; }
+        .tilt-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .card-info { position: absolute; bottom: 0; width: 100%; padding: 2rem; background: linear-gradient(transparent, #000); }
+
+        /* Review System */
+        .review-stats { display: flex; align-items: center; gap: 20px; background: var(--glass); padding: 20px 40px; border-radius: 100px; width: fit-content; margin-bottom: 3rem; border: 1px solid var(--gold); }
+        #reviews-display { display: flex; flex-wrap: wrap; gap: 2rem; padding-bottom: 1rem; }
+        .review-card { flex: 1 1 320px; background: var(--glass); padding: 2.5rem; border-radius: 25px; border: 1px solid rgba(255,255,255,0.1); display: none; }
+        .review-card.visible { display: block; }
+        
+        .star-picker { display: flex; gap: 10px; font-size: 2rem; margin: 15px 0; }
+        .star-picker i { cursor: pointer; color: #333; transition: 0.3s; }
+        .star-picker i.active { color: var(--gold); }
+
+        /* Uitklap knop */
+        .btn-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 1rem 2.5rem; border-radius: 100px; font-family: 'League Gothic'; font-size: 1.5rem; cursor: pointer; margin: 2rem auto; display: none; transition: 0.3s; text-transform: uppercase; }
+        .btn-outline:hover { background: var(--gold); color: #000; }
+
+        @media (max-width: 768px) {
+            #reviews-display { flex-direction: column; }
+            .review-card { min-width: 100%; padding: 1.5rem; }
+            .review-stats { width: 100%; justify-content: center; border-radius: 20px; padding: 15px; }
+        }
+
+        /* Form */
+        .form-panel { background: var(--glass); padding: clamp(2rem, 5vw, 4rem); border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); }
+        input, select, textarea { width: 100%; padding: 1.2rem; margin-bottom: 1rem; background: rgba(0,0,0,0.5); border: 1px solid #333; color: #fff; border-radius: 12px; font-family: 'Raleway', sans-serif; }
+        .btn-gold { background: var(--gold); color: #000; padding: 1.5rem; border: none; border-radius: 100px; width: 100%; font-family: 'League Gothic'; font-size: 2rem; cursor: pointer; transition: 0.4s; }
+        .btn-gold:hover { transform: scale(1.02); box-shadow: 0 0 40px rgba(212,175,55,0.4); }
+
+        footer { padding: 4rem 7%; text-align: center; border-top: 1px solid #111; opacity: 0.5; font-size: 0.9rem; }
+    </style>
 </head>
-
 <body>
-    <header>
-        <a href="index.html">
-            <img src="IMG/FullLogo_Transparent_NoBuffer.png" alt="Laser Engraving Lasting Impressions Logo" width="300" height="150">
-        </a>
-        <br><br>
 
-        <ul class="navbar">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="HTML/about.html">About</a></li>
-            <li><a href="HTML/gallery.html">Gallery</a></li>
-            <li><a href="HTML/custom-orders.html">Order</a></li>
-            <li><a href="HTML/contact.html">Contact</a></li>
-        </ul>
-    </header>
+    <div id="laser-dot"></div>
 
-    <h1>Discover The Magic Of Laser Engraving</h1>
-    <div class="start">
-        <p>We turn everyday items into unique keepsakes with our laser engraving skills.</p>
-        <p>Whether you want to personalize a gift, mark a special event, or add a unique touch to your business, our precision and creativity deliver stunning results every time.</p>
-        <img src="IMG/xtool.jpg" alt="Precision Laser Engraving Process" width="100%" height="auto">
+    <div id="preloader">
+        <div class="laser-scanner"></div>
+        <div class="loading-text">CALIBRATING</div>
     </div>
 
-    <h2>Expert Laser Engraving Services</h2>
-    <br>
+    <nav>
+        <img src="IMG/FullLogo_Transparent_NoBuffer.png" alt="Lasting Impressions Logo" style="height: 40px; filter: invert(1);">
+        <div class="nav-links">
+            <a href="#gallery">Art</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#order">Configure</a>
+        </div>
+    </nav>
 
-    <div class="card-container">
-        <div class="card">
-            <img src="IMG/glass-1.jpg" alt="Custom Glass Engraving" width="500" height="500">
-            <div class="card-text">
-                <h3>Engraving On Glass</h3>
-                <p>Laser technology creates detailed designs, logos, or text on glass cups, giving a lasting, stylish, and dishwasher-safe finish.</p><br>
-                <p>Perfect for custom gifts, promotions, or events, this method creates a unique, lasting design on any glass cup.</p>
+    <section id="hero" class="hero">
+        <p data-aos="fade-up">THE PRECISION STUDIO</p>
+        <h1 data-aos="zoom-out">LASTING<br><span>IMPRESSIONS</span></h1>
+        <div data-aos="fade-up" data-aos-delay="400">
+            <a href="#order" class="btn-gold" style="width: auto; padding: 1rem 4rem; text-decoration: none;">START DESIGN</a>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2 data-aos="fade-right">Masterworks</h2>
+        <div class="gallery-grid">
+            <div class="tilt-card" data-aos="fade-up" onmousemove="tilt(event, this)">
+                <img src="IMG/Our-Family.jpg" alt="Family Tree Design">
+                <div class="card-info"><h3>Family Tree</h3><p>€ 25.00</p></div>
+            </div>
+            <div class="tilt-card" data-aos="fade-up" data-aos-delay="100" onmousemove="tilt(event, this)">
+                <img src="IMG/Jozef.jpg" alt="Wing photo frame">
+                <div class="card-info"><h3>Wing Photo Frame</h3><p>€ 25.00</p></div>
+            </div>
+            <div class="tilt-card" data-aos="fade-up" data-aos-delay="200" onmousemove="tilt(event, this)">
+                <img src="IMG/wedding-invite.jpg" alt="Wedding invitation">
+                <div class="card-info"><h3>Wedding invitation</h3><p>€ 3.00</p></div>
+            </div>
+            <div class="tilt-card" data-aos="fade-up" onmousemove="tilt(event, this)">
+                <img src="IMG/wolf.jpg" alt="Wolf Mandela Art">
+                <div class="card-info"><h3>Wolf Mandela Art</h3><p>€ 100.00</p></div>
+            </div>
+            <div class="tilt-card" data-aos="fade-up" data-aos-delay="100" onmousemove="tilt(event, this)">
+                <img src="IMG/wedding.jpg" alt="Wedding Sign">
+                <div class="card-info"><h3>Wedding Signs</h3><p>€ 35.00</p></div>
+            </div>
+            <div class="tilt-card" data-aos="fade-up" data-aos-delay="200" onmousemove="tilt(event, this)">
+                <img src="IMG/Igor.jpg" alt="Newborn Sign">
+                <div class="card-info"><h3>Newborn Sign</h3><p>€ 35.00</p></div>
+            </div>
+
+            <div class="tilt-card" data-aos="fade-up" data-aos-delay="200" onmousemove="tilt(event, this)">
+                <img src="IMG/2pac.jpg" alt="Tupac Sign">
+                <div class="card-info"><h3>Tupac Sign</h3><p>€ 15.00</p></div>
+            </div>
+
+            <div class="tilt-card" data-aos="fade-up" data-aos-delay="200" onmousemove="tilt(event, this)">
+                <img src="IMG/welcome.jpg" alt="Welcome Sign">
+                <div class="card-info"><h3>Welcome Sign</h3><p>€ 10.00</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews">
+        <h2 data-aos="fade-right">Client Voices</h2>
+        
+        <div class="review-stats" data-aos="zoom-in">
+            <div style="font-size: 3rem; font-family: 'League Gothic'; color: var(--gold);" id="avg-num">...</div>
+            <div>
+                <div style="color:var(--gold)" id="avg-stars">★★★★★</div>
+                <div style="font-size: 0.8rem; opacity: 0.6;"><span id="rev-count">0</span> Verified Reviews</div>
             </div>
         </div>
 
-        <div class="card">
-            <img src="IMG/welcome.jpg" alt="Laser Cut Wood Signs" width="500" height="500">
-            <div class="card-text">
-                <h3>Plywood Cutting & Engraving</h3>
-                <p>Laser engraving on plywood employs advanced tech to craft intricate designs, logos, or text.</p><br>
-                <p>This method ensures precise patterns, offering a custom, durable finish.</p><br>
-                <p>Perfect for signs, art, and gifts, laser engraving brings out wood’s natural beauty with a polished look.</p>
-            </div>
+        <div id="reviews-display">
+            <p>Loading live reviews...</p>
         </div>
+        
+        <button id="load-more-btn" class="btn-outline" onclick="expandReviews()">View all reviews</button>
 
-        <div class="card">
-            <img src="IMG/tumbler-white.jpg" alt="Engraved Tumblers Custom Design" width="500" height="500">
-            <div class="card-text">
-                <h3>Engraving On Tumblers</h3>
-                <p>Laser engraving on tumblers uses modern tech to etch designs, logos, or text on metal or plastic surfaces.</p><br>
-                <p>This method gives a durable, high-quality, and elegant finish.</p><br>
-                <p>Perfect for personalized gifts, promotional items, or special events, the result is a unique custom tumbler.</p>
-            </div>
-        </div>
-    </div>
+        <div class="form-panel" style="margin-top: 4rem;" data-aos="fade-up">
+            <h3 style="font-family: 'League Gothic'; font-size: 2.5rem; color: var(--gold); margin-bottom: 1.5rem;">Leave Your Impression</h3>
+            <form id="review-form">
+                <input type="text" id="rev-name" placeholder="Full Name" required>
+                
+                <div class="star-picker" id="star-picker">
+                    <i class="fas fa-star active" data-v="1"></i>
+                    <i class="fas fa-star active" data-v="2"></i>
+                    <i class="fas fa-star active" data-v="3"></i>
+                    <i class="fas fa-star active" data-v="4"></i>
+                    <i class="fas fa-star active" data-v="5"></i>
+                </div>
+                <input type="hidden" id="rev-score" value="5">
 
-    <h2>Get Inspiration At Our Gallery</h2>
-    <div class="third">
-        <div class="photo-container">
-            <img src="IMG/gallery.jpg" alt="Custom Laser Engraved Items in Gallery" width="1000" height="600" class="background-photo">
-            <img src="IMG/BateSa.png" alt="Laser Engraved Plywood Sign" class="overlay-photo">
+                <textarea id="rev-text" rows="4" placeholder="How was your experience with us?" required></textarea>
+                <button type="submit" id="submit-btn" class="btn-gold">POST EXPERIENCE</button>
+            </form>
         </div>
-        <a href="HTML/gallery.html">
-            <button class="btn">Check Now</button>
-        </a>
-    </div>
+    </section>
 
-    <div class="end">
-        <h2>Discover Us On Social Media</h2>
-        <div class="circle-container">
-            <img src="IMG/design.png" alt="Laser Engraving Profile Picture" width="500" height="500" class="profile-pic">
+    <section id="order">
+        <h2 data-aos="fade-up">Launch Project</h2>
+        <div class="form-panel" data-aos="zoom-in">
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="a767b18e-ef95-4d49-b5e2-94ee31758edc">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                </div>
+                <select name="material">
+                    <option>Wood</option><option>Slate</option><option>Metal</option>
+                </select>
+                <textarea name="message" rows="5" placeholder="Dimensions and design vision..."></textarea>
+                <button type="submit" class="btn-gold">TRANSMIT TO STUDIO</button>
+            </form>
         </div>
-        <a href="https://www.instagram.com/graff.woods/">
-            <br>
-            <button class="btn">Instagram</button>
-        </a>
-    </div>
+    </section>
 
     <footer>
-        <p class="rechten">&copy; 2024 <br>Laser Engraving Lasting Impressions<br>All rights reserved</p>
-        <p>Follow us on:
-            <a href="https://www.facebook.com/profile.php?id=61561035895125" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/graff.woods/" target="_blank"><i class="fab fa-instagram"></i></a>
-        </p>
+        <p>&copy; 2024 Lasting Impressions | laserstudioexpress@gmail.com | Custom Laser Studio</p>
     </footer>
-</body>
 
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000 });
+
+        const BIN_ID = "696e50ccae596e708fe6d982"; 
+        const API_KEY = "$2a$10$tDPXUvKH8ClBLVkmIeG8ae0m4RHxdW.pHVRPOOEUyTTXlyG1AsvP.";
+        const API_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+
+        window.addEventListener('load', () => {
+            setTimeout(() => { document.getElementById('preloader').style.transform = 'translateY(-100%)'; }, 2000);
+            fetchReviews();
+        });
+
+        const dot = document.getElementById('laser-dot');
+        document.addEventListener('mousemove', e => {
+            dot.style.top = e.clientY + 'px';
+            dot.style.left = e.clientX + 'px';
+        });
+
+        function tilt(e, card) {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            card.style.transform = `perspective(1000px) rotateY(${x*15}deg) rotateX(${y*-15}deg) scale(1.02)`;
+        }
+        document.querySelectorAll('.tilt-card').forEach(c => c.addEventListener('mouseleave', () => c.style.transform = 'none'));
+
+        document.querySelectorAll('#star-picker i').forEach(s => {
+            s.addEventListener('click', () => {
+                const v = s.getAttribute('data-v');
+                document.getElementById('rev-score').value = v;
+                document.querySelectorAll('#star-picker i').forEach((star, i) => star.classList.toggle('active', i < v));
+            });
+        });
+
+        async function fetchReviews() {
+            try {
+                const response = await fetch(API_URL + '/latest', {
+                    headers: { 'X-Master-Key': API_KEY }
+                });
+                const data = await response.json();
+                if (data.record) renderReviews(data.record);
+            } catch (err) { 
+                console.error("Error loading reviews:", err);
+                document.getElementById('reviews-display').innerHTML = "Reviews could not be loaded.";
+            }
+        }
+
+        function renderReviews(reviews) {
+            const display = document.getElementById('reviews-display');
+            display.innerHTML = '';
+            let total = 0;
+            const sortedReviews = [...reviews].reverse();
+
+            sortedReviews.forEach((r, index) => {
+                total += parseInt(r.rating);
+                const isVisible = index < 3 ? 'visible' : '';
+                display.innerHTML += `
+                    <div class="review-card ${isVisible}">
+                        <div style="color:var(--gold); margin-bottom:1rem;">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+                        <p>"${r.text}"</p>
+                        <p style="margin-top:1.5rem; font-weight:bold; color:var(--gold);">- ${r.name}</p>
+                    </div>`;
+            });
+
+            document.getElementById('rev-count').innerText = reviews.length;
+            const avg = reviews.length ? (total / reviews.length).toFixed(1) : "5.0";
+            document.getElementById('avg-num').innerText = avg;
+            document.getElementById('avg-stars').innerText = '★'.repeat(Math.round(avg));
+
+            const btn = document.getElementById('load-more-btn');
+            if (reviews.length > 3) { btn.style.display = 'block'; } else { btn.style.display = 'none'; }
+        }
+
+        function expandReviews() {
+            const hiddenCards = document.querySelectorAll('.review-card');
+            hiddenCards.forEach(card => card.classList.add('visible'));
+            document.getElementById('load-more-btn').style.display = 'none';
+        }
+
+        document.getElementById('review-form').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = "POSTING...";
+            btn.disabled = true;
+
+            try {
+                const res = await fetch(API_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
+                const current = await res.json();
+                let list = current.record || [];
+
+                list.push({
+                    name: document.getElementById('rev-name').value,
+                    text: document.getElementById('rev-text').value,
+                    rating: document.getElementById('rev-score').value
+                });
+
+                await fetch(API_URL, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY },
+                    body: JSON.stringify(list)
+                });
+
+                btn.innerText = "DONE!";
+                setTimeout(() => { btn.innerText = "POST EXPERIENCE"; btn.disabled = false; }, 2000);
+                fetchReviews();
+                e.target.reset();
+            } catch (err) {
+                alert("Something went wrong while saving.");
+                btn.disabled = false;
+            }
+        };
+    </script>
+</body>
 </html>
